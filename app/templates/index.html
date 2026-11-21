@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanSmart | Analizador financiero</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+
+    <main class="container">
+
+        <header>
+            <h1>FinanSmart</h1>
+            <p>Analiza tus finanzas personales de manera sencilla.</p>
+        </header>
+
+        <section class="card">
+
+            <h2>Analizador de gastos</h2>
+
+            <p>Ingresa tus ingresos y gastos mensuales.</p>
+
+            {% if error %}
+                <div class="error">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+            <form action="/analizar" method="POST">
+
+                <label for="ingresos">Ingresos mensuales ($)</label>
+                <input
+                    type="number"
+                    id="ingresos"
+                    name="ingresos"
+                    min="0"
+                    step="0.01"
+                    placeholder="Ejemplo: 2000000"
+                    required
+                >
+
+                <label for="gastos">Gastos mensuales ($)</label>
+                <input
+                    type="number"
+                    id="gastos"
+                    name="gastos"
+                    min="0"
+                    step="0.01"
+                    placeholder="Ejemplo: 1200000"
+                    required
+                >
+
+                <button type="submit">Analizar mis finanzas</button>
+
+            </form>
+
+        </section>
+
+        <footer>
+            <p>FinanSmart - Controla tus finanzas, mejora tu futuro.</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

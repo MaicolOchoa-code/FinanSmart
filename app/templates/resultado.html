@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados | FinanSmart</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>FinanSmart</h1>
+            <p>Tu resumen financiero mensual</p>
+        </header>
+
+        <section class="card dashboard">
+            <div class="dashboard-header">
+                <div>
+                    <h2>Resumen financiero</h2>
+                    <p>Estos son los resultados de tu análisis.</p>
+                </div>
+                <span class="tag">Análisis completado</span>
+            </div>
+
+            <div class="balance-card">
+                <span>Balance disponible</span>
+                <h2>${{ resultado.balance }}</h2>
+                <p>Ingresos menos gastos</p>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <span>Ingresos</span>
+                    <h3 class="income">${{ resultado.ingresos }}</h3>
+                </div>
+
+                <div class="summary-item">
+                    <span>Gastos</span>
+                    <h3 class="expense">${{ resultado.gastos }}</h3>
+                </div>
+            </div>
+
+            <div class="percentage-card">
+                <div class="percentage-header">
+                    <span>Porcentaje de gastos</span>
+                    <strong>{{ resultado.porcentaje_gastos }}%</strong>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"
+                         style="width: {{ resultado.porcentaje_gastos if resultado.porcentaje_gastos <= 100 else 100 }}%;">
+                    </div>
+                </div>
+
+                <p>Proporción de tus ingresos utilizada en gastos.</p>
+            </div>
+
+            <div class="status">
+                <span>ESTADO FINANCIERO</span>
+                <h3>{{ resultado.estado }}</h3>
+                <p>{{ resultado.recomendacion }}</p>
+            </div>
+
+            <a href="/" class="button-link">Realizar otro análisis</a>
+        </section>
+
+        <footer>
+            <p>FinanSmart - Controla tus finanzas, mejora tu futuro.</p>
+        </footer>
+    </main>
+</body>
+</html>
